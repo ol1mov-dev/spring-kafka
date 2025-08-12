@@ -1,0 +1,5 @@
+rootProject.name = 'spring-kafka'
+
+include 'core'
+include 'product-service'
+include 'email-notification-service'
