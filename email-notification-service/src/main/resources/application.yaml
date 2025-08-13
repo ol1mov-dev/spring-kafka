@@ -3,11 +3,12 @@ spring:
     name: consumer
   kafka:
     consumer:
-      bootstrap-servers: localhost:29092
+      bootstrap-servers: localhost:9092
       group-id: my-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.use.type.headers: true
-
 
 server:
   port: 0

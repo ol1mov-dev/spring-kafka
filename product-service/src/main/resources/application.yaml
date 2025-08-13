@@ -2,39 +2,18 @@ spring:
   application:
     name: producer
   kafka:
-    bootstrap-servers: localhost:29092
+    bootstrap-servers: localhost:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       acks: all
-      retries: 10
-      batch-size: 16384
-      buffer-memory: 33554432
+      #      retries: 10
       properties:
-        retry.backoff.ms: 1000
+        #        retry.backoff.ms: 1000
         delivery.timeout.ms: 40000
         linger.ms: 5000
         request.timeout.ms: 30000
         enable.idempotence: true
         max.in.flight.requests.per.connection: 5
-        # Connection settings
-        connections.max.idle.ms: 540000
-        reconnect.backoff.ms: 50
-        reconnect.backoff.max.ms: 1000
-    # Admin client configuration for topic operations
-    admin:
-      properties:
-        bootstrap.servers: localhost:29092
-        request.timeout.ms: 30000
-        connections.max.idle.ms: 300000
-
 server:
   port: 0
-
-# Logging to debug connection issues
-logging:
-  level:
-    org.apache.kafka: INFO
-    org.springframework.kafka: DEBUG
-  pattern:
-    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
